@@ -1,0 +1,1081 @@
+/* --- 1. PENGATURAN AWAL & FONT --- */
+@font-face {
+    font-family: 'Monument';
+    src: url('monument.otf'); 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* TUGAS 1: Semua teks dasar dan paragraf memakai INTER (Normal) */
+body {
+    font-family: 'Inter', sans-serif; 
+    background-color: #ffffff;
+    color: #111111;
+}
+
+/* TUGAS 2: Judul Besar dan Tombol memakai MONUMENT EXTENDED (Kapital Semua) */
+h1, h2, .btn-tech, .btn-buy, .menu-trigger, .tech-menu-list a, .marquee-content {
+    font-family: 'Monument', sans-serif;
+    text-transform: uppercase; /* Memastikan huruf kapital semua */
+}
+
+/* Khusus untuk teks sistem di banner agar pakai Space Mono juga */
+.system-status {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+/* --- 2. GAYA HEADER MONOKROM BERSIH --- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 15px; 
+    background-color: #ffffff; 
+    border-bottom: 2px solid #111; /* Garis tegas di bawah header */
+    position: relative;
+    z-index: 1000;
+}
+
+header .logo img {
+    height: 60px; 
+    width: auto;
+    display: block;
+}
+
+
+/* --- 3. GAYA MENU FULLSCREEN (CHECKBOX HACK) --- */
+.hidden-checkbox {
+    display: none;
+}
+
+.menu-trigger {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #111;
+    transition: 0.3s;
+}
+
+.menu-trigger:hover {
+    color: #888;
+}
+
+.menu-symbol {
+    display: inline-block;
+    transform: translateY(3px); /* Ubah angka ini untuk menaik-turunkan simbol ︾ */
+    font-size: 18px;
+    margin-left: 6px;
+    color: #111; 
+}
+
+/* Layar Overlay Putih Transparan */
+.tech-overlay {
+    position: fixed;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.98); /* Warna putih solid/tegas */
+    backdrop-filter: blur(10px);
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Di tengah secara vertikal */
+    align-items: flex-start; /* RATA KIRI: Kunci utama agar terlihat terstruktur! */
+    padding-left: 30px; /* Jarak aman dari pinggir kiri HP */
+    transition: top 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.hidden-checkbox:checked ~ .tech-overlay {
+    top: 0;
+}
+
+.close-btn {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    font-size: 35px;
+    color: #111;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    transition: transform 0.3s;
+}
+
+/* Efek berputar halus saat tombol silang disentuh */
+.close-btn:hover {
+    transform: rotate(90deg);
+}
+
+.tech-menu-list {
+    list-style: none;
+    text-align: left; /* Memastikan teks rata kiri */
+}
+
+/* Mengatur jarak antar baris menu menjadi sangat lega */
+.tech-menu-list li {
+    margin: 25px 0; 
+}
+
+.tech-menu-list li a {
+    color: #111;
+    text-decoration: none;
+    font-size: 30px;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center; /* Sejajar dengan angka */
+    gap: 15px; /* Jarak rapi antara angka dan tulisan */
+    transition: 0.3s;
+}
+
+/* Gaya khusus untuk nomor (01, 02) menggunakan font Space Mono */
+.menu-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 16px;
+    color: #888; /* Warna abu-abu agar tidak menyaingi teks utama */
+    font-weight: normal;
+}
+
+/* Efek saat menu disentuh: Teks bergeser elegan ke kanan */
+.tech-menu-list li a:hover {
+    color: #888;
+    transform: translateX(15px); 
+}
+
+/* Gaya khusus tombol Join Syndicate di menu */
+.tech-menu-list .menu-subscribe {
+    margin-top: 50px; /* Jarak sangat jauh memisahkan tombol dari menu biasa */
+}
+
+.tech-menu-list .menu-subscribe a {
+    font-size: 16px; /* Huruf dikecilkan */
+    font-family: 'Space Mono', monospace;
+    background-color: #111;
+    color: #fff;
+    padding: 15px 30px;
+    border: 2px solid #111;
+    display: inline-block;
+}
+
+.tech-menu-list .menu-subscribe a:hover {
+    background-color: transparent;
+    color: #111;
+    transform: translateX(0); /* Membatalkan efek geser khusus untuk tombol ini */
+}
+
+/* --- 4. GAYA BANNER UTAMA (HERO STREETWEAR) --- */
+.hero-tech {
+    position: relative;
+    background-color: #f8f8f8; /* Latar abu-abu sangat terang */
+    padding: 100px 20px;
+    text-align: center;
+    overflow: hidden; 
+}
+
+/* Efek grid kotak-kotak tipis di latar belakang */
+.tech-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+    z-index: 1;
+    animation: moveGrid 15s linear infinite;
+}
+
+@keyframes moveGrid {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(30px); }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.system-status {
+    display: block;
+    font-family: 'Courier New', monospace;
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.hero-content h1 {
+    font-size: 38px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+
+/* Efek Blok Hitam Teks (Brutalist) */
+.hero-content .highlight {
+    background-color: #111;
+    color: #fff;
+    padding: 0 10px;
+    display: inline-block;
+}
+
+.hero-content p {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+/* Tombol Tajam Streetwear */
+.btn-tech {
+    display: inline-block;
+    background: #111;
+    color: #fff;
+    text-decoration: none;
+    padding: 15px 30px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    border: 2px solid #111;
+    border-radius: 0; /* Tanpa lengkungan (tajam) */
+    transition: 0.3s;
+}
+
+.btn-tech:hover {
+    background: #fff; 
+    color: #111; 
+    box-shadow: 6px 6px 0px #ccc; /* Bayangan kasar */
+}
+
+/* --- GAYA TEKS BERJALAN (STREETWEAR MARQUEE) --- */
+.marquee-container {
+    background-color: #111; /* Latar blok hitam */
+    color: #fff; /* Teks putih */
+    padding: 12px 0;
+    overflow: hidden; /* Menyembunyikan teks yang keluar layar */
+    white-space: nowrap; /* Mencegah teks turun ke baris baru */
+    border-top: 2px solid #111;
+}
+
+.marquee-content {
+    display: inline-block;
+    font-family: 'Monument', sans-serif;
+    font-size: 14px;
+    letter-spacing: 3px;
+    animation: scrollText 20s linear infinite; /* Kecepatan animasi, bisa diubah */
+}
+
+/* Memberikan jarak ekstra pada teks */
+.marquee-content span {
+    padding-right: 50px;
+}
+
+/* Rumus pergerakan teks dari kanan ke kiri */
+@keyframes scrollText {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* --- REDESIGN AREA PRODUK (BLACK & WHITE BRUTALIST) --- */
+
+.product-section {
+    position: relative;
+    padding: 80px 20px;
+    background-color: #ffffff; /* Latar belakang pinggiran putih bersih */
+    margin: 50px 0;
+}
+
+/* Dekorasi di sudut (Teks Hitam agar terbaca di background putih) */
+.section-decor {
+    position: absolute;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: #666; 
+    letter-spacing: 1px;
+}
+.decor-tl { top: 20px; left: 20px; }
+.decor-tr { top: 20px; right: 20px; text-align: right; }
+.decor-bl { bottom: 20px; left: 20px; }
+.decor-br { bottom: 20px; right: 20px; text-align: right; }
+
+.section-header h2 {
+    color: #111;
+}
+
+/* KARTU PRODUK (Putih dengan border tebal dan bayangan hitam solid) */
+/* === PERBAIKAN CSS UNTUK FOTO & TEKS PRODUK (GAMBAR 1) === */
+
+/* Pastikan kontainer produk menggunakan tata letak yang fleksibel */
+.product-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 350px; /* Batasi lebar kartu agar rapi di HP */
+    margin: 0 auto 30px auto; /* Tengah-tengah dan beri jarak bawah */
+    /* ... gaya lainnya ... */
+}
+
+/* Pastikan kontainer gambar mempertahankan rasio aspek 1:1 */
+.image-container {
+    width: 100%;
+    padding-top: 100%; /* Membuat kontainer 1:1 secara responsif */
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+    border: 2px solid #111; /* Border tebal khas brutalist */
+}
+
+/* Gambar mengisi kontainer 1:1 tanpa distorsi */
+.image-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Kunci agar foto "pas" dan tajam */
+}
+
+/* --- LOGO DEKORASI PRODUK --- */
+.brand-logo-decor {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.brand-logo-decor img {
+    width: 60px; /* Kamu bisa ubah angka ini untuk membesarkan/mengecilkan logomu */
+    height: auto;
+    /* Tambahan border-radius jika logo kamu kotak dan ingin dibuat sedikit bulat ujungnya: */
+    /* border-radius: 5px; */ 
+}
+
+.product-content {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.serial-no {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: #888;
+    display: block;
+}
+
+.product-card h3 {
+    font-family: 'Monument', sans-serif;
+    font-size: 22px;
+    margin: 5px 0 15px 0;
+    line-height: 1.2;
+    color: #111; /* Teks Hitam */
+}
+
+/* HARGA */
+.price-container {
+    background: #f4f4f4; /* Abu-abu sangat terang */
+    padding: 15px;
+    border-left: 5px solid #111; /* Garis hitam */
+    margin-bottom: 20px;
+}
+
+.price-container .old-price {
+    display: block;
+    text-decoration: line-through;
+    color: #999;
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+}
+
+.price-container .new-price {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    color: #111;
+    font-family: 'Space Mono', monospace;
+    margin-top: 5px;
+}
+
+.product-footer-info {
+    border-top: 2px dashed #ddd;
+    padding-top: 20px;
+}
+
+.promo-box span {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    background: #111;
+    color: #fff;
+    padding: 3px 8px;
+}
+
+.promo-box p {
+    font-size: 11px;
+    color: #555;
+    margin-top: 8px;
+}
+
+/* TOMBOL */
+.btn-buy-v2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #111;
+    color: #fff;
+    text-decoration: none;
+    padding: 15px 20px;
+    margin-top: 20px;
+    font-family: 'Monument', sans-serif;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.btn-buy-v2:hover {
+    background: #fff;
+    color: #111;
+    border: 2px solid #111;
+}
+
+.card-barcode {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: #aaa;
+    text-align: right;
+    margin-top: 15px;
+}
+
+/* --- GAYA FOOTER & NEWSLETTER (ANTI-MELUBER) --- */
+
+.site-footer {
+    background-color: #111; /* Kotak hitam pekat */
+    color: #fff;
+    padding: 50px 20px; /* Jarak aman di dalam kotak */
+    width: 100%;
+    box-sizing: border-box; /* KUNCI PENTING: Agar padding tidak menambah lebar layar */
+    overflow: hidden; /* Mencegah ada elemen yang tumpah keluar */
+    margin-top: 50px;
+}
+
+.footer-top {
+    display: flex;
+    flex-direction: column;
+    gap: 50px; /* Jarak antara bagian email dan menu Info */
+}
+
+.newsletter {
+    text-align: left; /* Rata kiri agar terlihat tegas */
+    width: 100%;
+}
+
+.newsletter h2 {
+    font-family: 'Monument', sans-serif;
+    font-size: 24px; /* Ukuran pas untuk HP */
+    margin-bottom: 10px;
+    word-wrap: break-word; /* Mencegah tulisan memanjang ke kanan */
+    line-height: 1.2;
+}
+
+.newsletter p {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+/* Mengatur form email agar tumpuk atas-bawah di HP */
+.subscribe-form {
+    display: flex;
+    flex-direction: column; /* Tombol akan pindah ke bawah input email */
+    gap: 15px;
+    width: 100%;
+}
+
+.subscribe-form input {
+    width: 100%;
+    padding: 15px;
+    background: transparent;
+    border: 1px solid #444;
+    color: #fff;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    box-sizing: border-box;
+}
+
+.subscribe-form button {
+    width: 100%;
+    padding: 15px;
+    background: #fff;
+    color: #111;
+    font-family: 'Monument', sans-serif;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: 0.3s;
+}
+
+.subscribe-form button:hover {
+    background: #888;
+}
+
+/* Mengatur menu tautan (Socials & Info) */
+.footer-links {
+    display: flex;
+    justify-content: flex-start;
+    gap: 50px; /* Jarak berdampingan yang rapi */
+    flex-wrap: wrap; /* Jika layar sangat kecil, otomatis turun ke bawah */
+}
+
+.link-column h3 {
+    font-family: 'Monument', sans-serif;
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.link-column a {
+    display: block;
+    color: #888;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    text-decoration: none;
+    margin-bottom: 12px;
+    transition: 0.3s;
+}
+
+.link-column a:hover {
+    color: #fff;
+}
+
+.footer-bottom {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-bottom p {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: #666;
+}
+
+.tech-badge {
+    display: inline-block;
+    background: #fff;
+    color: #111;
+    padding: 5px 10px;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    font-weight: bold;
+    width: fit-content;
+}
+
+
+/* --- 7. GAYA HALAMAN DETAIL PRODUK --- */
+.product-page {
+    background-color: #fff;
+}
+
+.product-nav {
+    padding: 20px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+}
+
+.product-nav a {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    text-decoration: none;
+    color: #111;
+}
+
+.nav-logo {
+    font-family: 'Monument', sans-serif;
+    font-size: 18px;
+}
+
+.detail-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 50px 5%;
+    gap: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.detail-gallery {
+    flex: 1;
+    min-width: 350px;
+}
+
+.main-img {
+    width: 100%;
+    border: 2px solid #111;
+}
+
+.sub-gallery {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.sub-gallery img {
+    width: calc(33.33% - 7px);
+    border: 1px solid #eee;
+    cursor: pointer;
+}
+
+.detail-info {
+    flex: 1;
+    min-width: 350px;
+}
+
+.detail-info h1 {
+    font-size: 32px;
+    margin: 10px 0;
+}
+
+.detail-price {
+    font-family: 'Space Mono', monospace;
+    font-size: 24px;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.detail-description h3 {
+    font-size: 14px;
+    border-bottom: 2px solid #111;
+    display: inline-block;
+    margin: 20px 0 10px;
+}
+
+.detail-description p, .detail-description li {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #444;
+    line-height: 1.6;
+}
+
+.detail-description ul {
+    list-style: none;
+    padding: 0;
+}
+
+.size-options {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.size-btn {
+    padding: 10px 20px;
+    border: 1px solid #111;
+    background: transparent;
+    font-family: 'Space Mono', monospace;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.size-btn:hover {
+    background: #111;
+    color: #fff;
+}
+
+.po-warning {
+    margin-top: 30px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    background: #f4f4f4;
+    padding: 10px;
+    border-left: 4px solid #111;
+}
+
+.btn-checkout {
+    display: block;
+    margin-top: 20px;
+    background: #111;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    font-family: 'Monument', sans-serif;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn-checkout:hover {
+    background: #444;
+}
+
+/* --- GAYA SIZE CHART DI HALAMAN DETAIL --- */
+.detail-size-chart {
+    margin-top: 20px;
+    border: 1px solid #111;
+}
+
+.detail-size-chart summary {
+    padding: 10px;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    cursor: pointer;
+    background: #111;
+    color: #fff;
+    list-style: none;
+    text-align: center;
+}
+
+.detail-size-chart summary::-webkit-details-marker {
+    display: none;
+}
+
+.size-table-wrapper {
+    padding: 15px;
+    background: #fafafa;
+}
+
+.size-table-wrapper table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+}
+
+.size-table-wrapper th, .size-table-wrapper td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.size-table-wrapper th {
+    background: #eee;
+    color: #111;
+}
+
+.size-table-wrapper p {
+    font-size: 10px;
+    color: #888;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+/* --- GAYA REDIRECT SYSTEM (STREETWEAR TECH) --- */
+.redirect-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff; /* Putih bersih */
+    z-index: 2000;
+    display: none; /* Awalnya disembunyikan */
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.redirect-box {
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    border: 3px solid #111;
+    padding: 40px 20px;
+    background: #fff;
+}
+
+.loading-text {
+    font-family: 'Monument', sans-serif;
+    font-size: 18px;
+    margin: 20px 0;
+}
+
+.progress-container {
+    width: 100%;
+    height: 10px;
+    background-color: #eee;
+    margin-bottom: 20px;
+    border: 1px solid #111;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background-color: #111;
+    transition: width 2s linear; /* Kecepatan loading 2 detik */
+}
+
+.redirect-msg {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* Tombol Akhir ke WhatsApp */
+.wa-final-btn {
+    display: none; /* Muncul setelah loading selesai */
+    background-color: #111;
+    color: #fff;
+    padding: 15px 25px;
+    font-family: 'Monument', sans-serif;
+    text-decoration: none;
+    font-size: 14px;
+    border: 2px solid #111;
+    transition: 0.3s;
+}
+
+.wa-final-btn:hover {
+    background-color: #fff;
+    color: #111;
+}
+
+/* --- GAYA HALAMAN INFO & FAQ --- */
+
+.info-page {
+    background-color: #fff;
+}
+
+.info-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.faq-list {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Jarak antar kotak pertanyaan */
+}
+
+.faq-item {
+    border: 2px solid #111;
+    background: #fff;
+    box-shadow: 5px 5px 0px #eee;
+}
+
+/* Tampilan baris pertanyaan */
+.faq-item summary {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 20px;
+    cursor: pointer;
+    background: #111;
+    color: #fff;
+    list-style: none; /* Menghilangkan tanda panah bawaan HP */
+    transition: 0.3s;
+}
+
+.faq-item summary::-webkit-details-marker {
+    display: none; /* Trik tambahan menghilangkan panah di Chrome */
+}
+
+.faq-item summary:hover {
+    background: #333;
+}
+
+/* Garis pemisah saat pertanyaan dibuka */
+.faq-item[open] summary {
+    border-bottom: 2px dashed #555;
+}
+
+/* Tampilan kotak jawaban */
+.faq-answer {
+    padding: 20px;
+    background: #fafafa;
+}
+
+.faq-answer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #444;
+}
+
+.faq-answer strong, .faq-answer em {
+    color: #111;
+}
+
+/* --- GAYA DOKUMEN KEBIJAKAN (POLICY) --- */
+
+.policy-content {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.policy-box {
+    border: 1px solid #ddd;
+    padding: 25px;
+    background: #fafafa;
+}
+
+.policy-box.warning {
+    border: 2px solid #111;
+    background: #fff;
+    box-shadow: 5px 5px 0px #111; /* Kotak bayangan tegas */
+}
+
+.policy-box h3 {
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    margin-bottom: 15px;
+    color: #111;
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 10px;
+}
+
+.policy-box p, .policy-box li {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #444;
+}
+
+.policy-box ul {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.policy-box li {
+    margin-bottom: 8px;
+}
+
+/* Teks ala sistem */
+.code-text {
+    font-family: 'Space Mono', monospace;
+    background: #111;
+    color: #fff !important;
+    padding: 10px;
+    margin-top: 15px;
+    font-size: 11px !important;
+    display: inline-block;
+}
+
+/* Tombol WA di dalam Policy */
+.btn-policy-wa {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: transparent;
+    border: 2px solid #111;
+    color: #111;
+    font-family: 'Monument', sans-serif;
+    font-size: 12px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn-policy-wa:hover {
+    background: #111;
+    color: #fff;
+}
+
+/* --- GAYA HALAMAN TENTANG KAMI (ABOUT) --- */
+
+.about-page {
+    background-color: #fcfcfc;
+}
+
+.about-container {
+    max-width: 900px; /* Lebih lebar sedikit untuk memuat gambar */
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.about-content {
+    margin-top: 40px;
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    border: 2px solid #111;
+    margin-bottom: 30px;
+    filter: grayscale(100%); /* Membuat gambar jadi hitam putih agar dramatis */
+}
+
+/* Kotak Cerita Utama */
+.manifesto-box {
+    background: #111;
+    color: #fff;
+    padding: 40px 30px;
+    margin-bottom: 40px;
+    border-left: 5px solid #666; /* Garis aksen abu-abu di kiri */
+}
+
+.manifesto-box h3 {
+    font-family: 'Space Mono', monospace;
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #fff;
+    letter-spacing: 2px;
+}
+
+.manifesto-box p {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.8;
+    color: #ccc;
+    margin-bottom: 15px;
+}
+
+.manifesto-box strong {
+    color: #fff;
+}
+
+/* Tiga Kotak Nilai Brand di Bawah */
+.core-values {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.value-item {
+    flex: 1;
+    min-width: 250px;
+    border: 1px solid #ddd;
+    padding: 25px;
+    background: #fff;
+    transition: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.value-item:hover {
+    border-color: #111;
+    box-shadow: 8px 8px 0px #111; /* Bayangan kaku muncul saat disentuh */
+    transform: translateY(-5px); /* Kotak sedikit terangkat */
+}
+
+.value-item h4 {
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    margin-bottom: 15px;
+    color: #111;
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 10px;
+}
+
+.value-item p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    line-height: 1.6;
+    color: #555;
+}

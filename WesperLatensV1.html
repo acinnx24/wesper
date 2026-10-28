@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wesper Latens V1 | Wesper Syndicate</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="product-page">
+
+    <nav class="product-nav">
+        <a href="index.html">← KEMBALI KE DROP</a>
+        <div class="nav-logo">WESPER</div>
+    </nav>
+
+    <main class="detail-container">
+        <div class="detail-gallery">
+            <img src="https://via.placeholder.com/600x800/eeeeee/111111?text=MAIN+IMAGE+FRONT" alt="Wesper V1 Front" class="main-img">
+            <div class="sub-gallery">
+                <img src="https://via.placeholder.com/150/111111/eeeeee?text=BACK" alt="Detail 1">
+                <img src="https://via.placeholder.com/150/eeeeee/111111?text=ZIPPER" alt="Detail 2">
+                <img src="https://via.placeholder.com/150/111111/eeeeee?text=FABRIC" alt="Detail 3">
+            </div>
+        </div>
+
+        <div class="detail-info">
+            <span class="system-status">CODE: WESPER-V1-SB // VOL.01</span>
+            <h1>Wesper Latens V1</h1>
+            <p class="detail-price">IDR 550.000</p>
+            
+            <div class="detail-description">
+                <h3>OVERVIEW</h3>
+                <p>Jaket taktis ringan yang dirancang untuk mobilitas perkotaan tinggi. Menggunakan material water-repellent yang mampu menahan hujan ringan dan angin kencang (windproof).</p>
+                
+                <h3>SPECIFICATIONS</h3>
+                <ul>
+                    <li>Outer: High-Density Nylon Shell (DWR Coated)</li>
+                    <li>Inner: Breathable Mesh Lining</li>
+                    <li>Zippers: YKK® Reverse Coil</li>
+                    <li>Pockets: 4 Tactical Compartments</li>
+                    <li>Fit: Oversized Tech-Fit</li>
+                </ul>
+            </div>
+
+            <div class="size-selection">                
+                <h3>SELECT SIZE:</h3>
+                <div class="size-options">
+                    <button class="size-btn">S</button>
+                    <button class="size-btn">M</button>
+                    <button class="size-btn">L</button>
+                    <button class="size-btn">XL</button>
+                </div>
+            </div>
+
+            <details class="detail-size-chart">
+                <summary>[ OPEN SIZE GUIDE + ]</summary>
+                <div class="size-table-wrapper">
+                    <table>
+                        <tr>
+                            <th>SIZE</th>
+                            <th>LENGTH</th>
+                            <th>WIDTH</th>
+                        </tr>
+                        <tr>
+                            <td>S</td>
+                            <td>68CM</td>
+                            <td>52CM</td>
+                        </tr>
+                        <tr>
+                            <td>M</td>
+                            <td>70CM</td>
+                            <td>54CM</td>
+                        </tr>
+                        <tr>
+                            <td>L</td>
+                            <td>72CM</td>
+                            <td>56CM</td>
+                        </tr>
+                        <tr>
+                            <td>XL</td>
+                            <td>74CM</td>
+                            <td>58CM</td>
+                        </tr>
+                    </table>
+                    <p>*Model is 175cm wearing size L</p>
+                </div>
+            </details>
+
+            <p class="po-warning">MADE TO ORDER SYSTEM: ESTIMASI PENGERJAAN 14-21 HARI KERJA.</p>    
+                
+            <button onclick="startRedirect()" class="btn-checkout">SECURE YOUR SLOT NOW</button>
+
+<div id="redirect-overlay" class="redirect-overlay">
+    <div class="redirect-box">
+        <span class="system-status">>> ESTABLISHING SECURE CONNECTION...</span>
+        <h2 class="loading-text">CONNECTING TO WESPER_SYNDICATE</h2>
+        
+        <div class="progress-container">
+            <div id="progress-bar" class="progress-bar"></div>
+        </div>
+        
+        <p class="redirect-msg">Mohon tunggu, sistem sedang menyiapkan jalur pemesanan khusus untuk Anda.</p>
+        
+        <a href="https://wa.me/6281234567890?text=Halo%20Wesper!%20Saya%20ingin%20PO%20Wesper%20Latens%20V1." id="wa-final-btn" class="wa-final-btn">LANJUT KE WHATSAPP →</a>
+    </div>
+</div>
+        </div>
+    </main>
+<script>
+function startRedirect() {
+    // 1. Munculkan Overlay
+    document.getElementById('redirect-overlay').style.display = 'flex';
+    
+    // 2. Jalankan Loading Bar
+    setTimeout(() => {
+        document.getElementById('progress-bar').style.width = '100%';
+    }, 100);
+
+    // 3. Setelah 2.5 detik, munculkan tombol lanjut
+    setTimeout(() => {
+        document.querySelector('.loading-text').innerText = 'CONNECTION ESTABLISHED';
+        document.getElementById('wa-final-btn').style.display = 'inline-block';
+        document.querySelector('.redirect-msg').innerText = 'Jalur aman telah siap. Klik tombol di bawah untuk menyelesaikan pesanan.';
+    }, 2500);
+}
+</script>
+</body>
+</html>
